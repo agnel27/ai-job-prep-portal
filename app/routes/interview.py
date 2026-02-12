@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
 from app.services.ai_service import interview_feedback
-from app.models.interview import InterviewScore
+from app.models.interview import InterviewResult
 from app import db
 import re
 
@@ -19,7 +19,7 @@ def interview():
         match = re.search(r"Score:\s*(\d+)", result)
         score = int(match.group(1)) if match else 0
 
-        record = InterviewScore(
+        record = InterviewResult(
             user_id=current_user.id,
             score=score,
             feedback=result
