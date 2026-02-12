@@ -1,3 +1,3 @@
 from .user import User
-from .interview import InterviewScore
+from .interview import InterviewResult
 from .resume import ResumeAnalysis
