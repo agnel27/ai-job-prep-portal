@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
-from app.services.ai_service import interview_feedback
+from app.services.ai_service import generate_interview_feedback
 from app.models.interview import InterviewResult
 from app import db
 import re
@@ -14,7 +14,7 @@ def interview():
 
     if request.method == "POST":
         answer = request.form["answer"]
-        result = interview_feedback(question, answer)
+        result = generate_interview_feedback(question, answer)
 
         match = re.search(r"Score:\s*(\d+)", result)
         score = int(match.group(1)) if match else 0
