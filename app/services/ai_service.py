@@ -65,3 +65,35 @@ def generate_interview_question(role):
     )
 
     return response.choices[0].message.content
+
+
+# ---------------------------
+# Interview Feedback
+# ---------------------------
+def interview_feedback(question, answer):
+    prompt = f"""
+    You are an interview coach.
+
+    Question:
+    {question}
+
+    Candidate Answer:
+    {answer}
+
+    Provide:
+    1. Strengths
+    2. Weaknesses
+    3. Suggested improved answer
+    4. Score out of 10
+    """
+
+    response = client.chat.completions.create(
+        model="gpt-4.1-mini",
+        messages=[
+            {"role": "system", "content": "You are an interview evaluator."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.7
+    )
+
+    return response.choices[0].message.content
