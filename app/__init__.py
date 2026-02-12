@@ -18,7 +18,7 @@ def create_app():
     from .routes.main import main_bp
     from .routes.interview import interview_bp
     from .routes.resume import resume_bp
-    from .routes.chatbot import chatbot_bp
+    from .routes.chatbox import chatbot_bp
     from .routes.analytics import analytics_bp
 
     app.register_blueprint(auth_bp)
